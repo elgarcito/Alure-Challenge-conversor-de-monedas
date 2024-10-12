@@ -1,30 +1,36 @@
 [
   {
+    "Opciones_de_conversion": "De Dólar estadounidense a Peso Argentino",
     "Opcion": 1,
     "monedaElegida": "USD",
     "monedaDestino": "ARS"
   },
   {
+    "Opciones_de_conversion": "De Peso Argentino a Dólar estadounidense",
     "Opcion": 2,
     "monedaElegida": "ARS",
     "monedaDestino": "USD"
   },
   {
+    "Opciones_de_conversion": "De Dólar estadounidense a Real brasileño",
     "Opcion": 3,
     "monedaElegida": "USD",
     "monedaDestino": "BRL"
   },
   {
+    "Opciones_de_conversion": "De Real brasileño a Dólar estadounidense",
     "Opcion": 4,
     "monedaElegida": "BRL",
     "monedaDestino": "USD"
   },
   {
+    "Opciones_de_conversion": "De Dólar estadounidense a Peso colombiano",
     "Opcion": 5,
     "monedaElegida": "USD",
     "monedaDestino": "COP"
   },
   {
+    "Opciones_de_conversion": "De Peso colombiano a Dólar estadounidense",
     "Opcion": 6,
     "monedaElegida": "COP",
     "monedaDestino": "USD"

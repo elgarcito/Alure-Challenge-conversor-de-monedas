@@ -2,6 +2,7 @@ package com.alura.challengeConversorDeMonedas.modelos;
 
 import com.google.gson.*;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -77,6 +78,7 @@ public class ConversionMoneda {
             reader = new FileReader("opciones.json");
             JsonElement fileElement = JsonParser.parseReader(reader);
             JsonArray jsonArray = fileElement.getAsJsonArray();
+            reader.close();
 
             // Iterar a través del array
             for (JsonElement element : jsonArray) {
@@ -86,6 +88,29 @@ public class ConversionMoneda {
                     setNombreMonedaElegida(objeto.get("monedaElegida").getAsString());
                     setNombreMonedaObjetivo(objeto.get("monedaDestino").getAsString());
                 }
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarOpciones() {
+        // Leer el archivo JSON
+        FileReader reader = null;
+        try {
+            reader = new FileReader("opciones.json");
+            JsonElement fileElement = JsonParser.parseReader(reader);
+            JsonArray jsonArray = fileElement.getAsJsonArray();
+
+            // Iterar a través del array
+            int opcion=1;
+            for (JsonElement element : jsonArray) {
+                JsonObject objeto = element.getAsJsonObject();
+                String opciones = objeto.get("Opciones_de_conversion").getAsString();
+                System.out.println(" Opción: "+opcion+" -----> "+opciones);
+                opcion++;
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
