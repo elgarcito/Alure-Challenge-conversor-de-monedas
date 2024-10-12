@@ -23,7 +23,7 @@ public class Main {
 
         System.out.println("Por favor elija una opcion valida"+"\n");
         conversion.mostrarOpciones();
-        while (estado==2) {
+        while (estado==1) {
             try {
 
                 while (true) {
@@ -42,7 +42,7 @@ public class Main {
                 }
                 conversion.definirConversionyMonto(eleccionUsuario, cantidadACambiar);
                 conversion.realizarConversion(apiKeyValue);
-                System.out.println(conversion.getMontoFinalMonedaObjetivo());
+                System.out.println(conversion.toString());
 
                 System.out.println("\n");
                 System.out.println("Desea realizar otra conversion? 1-Si, 2-No");

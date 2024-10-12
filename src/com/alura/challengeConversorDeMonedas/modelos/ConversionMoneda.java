@@ -105,11 +105,11 @@ public class ConversionMoneda {
             JsonArray jsonArray = fileElement.getAsJsonArray();
 
             // Iterar a través del array
-            int opcion=1;
+            int opcion=0;
             for (JsonElement element : jsonArray) {
                 JsonObject objeto = element.getAsJsonObject();
                 String opciones = objeto.get("Opciones_de_conversion").getAsString();
-                System.out.println(" Opción: "+opcion+" -----> "+opciones);
+                System.out.println(" Opción: "+opcion+"-----> "+opciones);
                 opcion++;
             }
         } catch (FileNotFoundException e) {
@@ -149,8 +149,8 @@ public class ConversionMoneda {
 
     @Override
     public String toString() {
-        return "La conversion de la moneda: "+getNombreMonedaElegida()+" a la moneda: "
-                +getNombreMonedaObjetivo()+" es: "+ getCantidadACambiar()+" "+getNombreMonedaObjetivo()
-                +"---> "+getValorMonedaObjetivo()+" "+getValorMonedaObjetivo();
+        return "La conversion del monto: "+getCantidadACambiar()+" "+getNombreMonedaElegida()+" a la moneda: "
+                +getNombreMonedaObjetivo()+" es: "+ getCantidadACambiar()+" "+getNombreMonedaElegida()
+                +"---> "+getMontoFinalMonedaObjetivo()+" "+getNombreMonedaObjetivo();
     }
 }
