@@ -1,0 +1,32 @@
+[
+  {
+    "Opcion": 1,
+    "monedaElegida": "USD",
+    "monedaDestino": "ARS"
+  },
+  {
+    "Opcion": 2,
+    "monedaElegida": "ARS",
+    "monedaDestino": "USD"
+  },
+  {
+    "Opcion": 3,
+    "monedaElegida": "USD",
+    "monedaDestino": "BRL"
+  },
+  {
+    "Opcion": 4,
+    "monedaElegida": "BRL",
+    "monedaDestino": "USD"
+  },
+  {
+    "Opcion": 5,
+    "monedaElegida": "USD",
+    "monedaDestino": "COP"
+  },
+  {
+    "Opcion": 6,
+    "monedaElegida": "COP",
+    "monedaDestino": "USD"
+  }
+]
