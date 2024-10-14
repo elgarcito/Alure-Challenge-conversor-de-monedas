@@ -34,5 +34,11 @@
     "Opcion": 6,
     "monedaElegida": "COP",
     "monedaDestino": "USD"
+  },
+  {
+    "Opciones_de_conversion": "Salir",
+    "Opcion": 7,
+    "monedaElegida": "",
+    "monedaDestino": ""
   }
 ]

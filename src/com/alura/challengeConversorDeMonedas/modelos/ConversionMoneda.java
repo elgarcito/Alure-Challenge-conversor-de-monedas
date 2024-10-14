@@ -10,6 +10,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Scanner;
 
 //API KEY: c096090b482a281a51695afe
 public class ConversionMoneda {
@@ -87,6 +88,7 @@ public class ConversionMoneda {
                 if(opcion==eleccion){
                     setNombreMonedaElegida(objeto.get("monedaElegida").getAsString());
                     setNombreMonedaObjetivo(objeto.get("monedaDestino").getAsString());
+                    break;
                 }
             }
         } catch (FileNotFoundException e) {
@@ -96,26 +98,6 @@ public class ConversionMoneda {
         }
     }
 
-    public void mostrarOpciones() {
-        // Leer el archivo JSON
-        FileReader reader = null;
-        try {
-            reader = new FileReader("opciones.json");
-            JsonElement fileElement = JsonParser.parseReader(reader);
-            JsonArray jsonArray = fileElement.getAsJsonArray();
-
-            // Iterar a través del array
-            int opcion=0;
-            for (JsonElement element : jsonArray) {
-                JsonObject objeto = element.getAsJsonObject();
-                String opciones = objeto.get("Opciones_de_conversion").getAsString();
-                System.out.println(" Opción: "+opcion+"-----> "+opciones);
-                opcion++;
-            }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public void realizarConversion(String apiKeyValue){
         String finalUrl="https://v6.exchangerate-api.com/v6/"+apiKeyValue+"/pair/"+"/"+getNombreMonedaElegida()+"/"
@@ -151,6 +133,6 @@ public class ConversionMoneda {
     public String toString() {
         return "La conversion del monto: "+getCantidadACambiar()+" "+getNombreMonedaElegida()+" a la moneda: "
                 +getNombreMonedaObjetivo()+" es: "+ getCantidadACambiar()+" "+getNombreMonedaElegida()
-                +"---> "+getMontoFinalMonedaObjetivo()+" "+getNombreMonedaObjetivo();
+                +"---> "+String.format("%.2f",getMontoFinalMonedaObjetivo())+" "+getNombreMonedaObjetivo();
     }
 }
