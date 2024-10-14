@@ -2,10 +2,7 @@ package com.alura.challengeConversorDeMonedas.modelos;
 
 import com.google.gson.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -99,10 +96,21 @@ public class ConversionMoneda {
     }
 
 
-    public void realizarConversion(String apiKeyValue){
-        String finalUrl="https://v6.exchangerate-api.com/v6/"+apiKeyValue+"/pair/"+"/"+getNombreMonedaElegida()+"/"
-                +getNombreMonedaObjetivo();
+    public void realizarConversion(){
+
+        //Leo la API Key desde un archivo
+        BufferedReader br = null;
+        String contraseña = null;
+
         try {
+
+            br = new BufferedReader(new FileReader("apiKey.txt"));
+            String apiKeyValue = br.readLine();
+            br.close();
+
+            String finalUrl="https://v6.exchangerate-api.com/v6/"+apiKeyValue+"/pair/"+"/"+getNombreMonedaElegida()+"/"
+                    +getNombreMonedaObjetivo();
+
             Gson gson = new GsonBuilder()
                     .setPrettyPrinting()
                     .create();

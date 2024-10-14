@@ -36,29 +36,6 @@ public class Menu {
         }
     }
 
-//    public int elegirOpciones(Scanner lectura) {
-//        int eleccionUsuario;
-//        try {
-//            while (true) {
-//                System.out.println("\n" + "Ingrese un numero del 1 al 7");
-//                if (lectura.hasNextInt()) {
-//                    eleccionUsuario = Integer.valueOf(lectura.nextLine());
-//                    if (eleccionUsuario > 0 && eleccionUsuario <= 7) {
-//                        break;
-//                    } else {
-//                        System.out.println("Número fuera de rango. Inténtalo de nuevo.");
-//                    }
-//                } else {
-//                    System.out.println("Entrada no válida. Por favor, introduce un número.");
-//                    lectura.next();
-//                }
-//            }
-//            return eleccionUsuario;
-//        } catch (NumberFormatException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
     public int elegirOpciones(Scanner lectura) {
         int eleccionUsuario = 0;
         try {
@@ -88,31 +65,6 @@ public class Menu {
         }
     }
 
-
-
-//    public double elegirMontoACambiar(Scanner lectura) {
-//       double cantidadACambiar=1;
-//        try {
-//            while (true) {
-//                System.out.println("Ingrese una cantidad a cambiar, entre 1 y 1.000.000");
-//                if (lectura.hasNextInt()) {
-//                    cantidadACambiar = Double.valueOf(lectura.nextLine());
-//                    if (cantidadACambiar > 0 && cantidadACambiar <= 1000000) {
-//                        break;
-//                    } else {
-//                        System.out.println("Número fuera de rango. Inténtalo de nuevo.");
-//                    }
-//                } else {
-//                    System.out.println("Entrada no válida. Por favor, introduce un número.");
-//                    lectura.next();
-//                }
-//            }
-//            return cantidadACambiar;
-//        } catch (NumberFormatException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
     public double elegirMontoACambiar(Scanner lectura) {
         double cantidadACambiar = 1;
         try {
@@ -141,31 +93,6 @@ public class Menu {
             throw new RuntimeException(e);
         }
     }
-
-
-
-//    public int continuarOCerrarPrograma(Scanner lectura) {
-//        int eleccionUsuario;
-//        try {
-//            while (true) {
-//                System.out.println("\n" + "¿Desea realizar otra conversion? 1-Si, 2-No");
-//                if (lectura.hasNextInt()) {
-//                    eleccionUsuario = Integer.valueOf(lectura.nextLine());
-//                    if (eleccionUsuario > 0 && eleccionUsuario <= 2) {
-//                        break;
-//                    } else {
-//                        System.out.println("Número fuera de rango. Inténtalo de nuevo.");
-//                    }
-//                } else {
-//                    System.out.println("Entrada no válida. Por favor, introduce un número.");
-//                    lectura.next();
-//                }
-//            }
-//            return eleccionUsuario;
-//        } catch (NumberFormatException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 
     public int continuarOCerrarPrograma(Scanner lectura) {
         int eleccionUsuario = 0;
