@@ -100,8 +100,6 @@ public class ConversionMoneda {
 
         //Leo la API Key desde un archivo
         BufferedReader br = null;
-        String contraseña = null;
-
         try {
 
             br = new BufferedReader(new FileReader("apiKey.txt"));
@@ -125,7 +123,6 @@ public class ConversionMoneda {
                     .send(request, HttpResponse.BodyHandlers.ofString());
 
             String json=response.body();
-            //System.out.println(json);
             MonedaRecord monedaRecord=gson.fromJson(json, MonedaRecord.class);
             setValorMonedaObjetivo(Double.valueOf(monedaRecord.conversion_rate()));
             setMontoFinalMonedaObjetivo(getValorMonedaObjetivo()*getCantidadACambiar());

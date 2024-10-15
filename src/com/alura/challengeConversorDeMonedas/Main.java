@@ -10,16 +10,15 @@ public class Main {
 
         //Valores predeterminados
         Menu menu = new Menu();// Inicializo la clase menu
-        ConversionMoneda conversion = new ConversionMoneda();
-        //String apiKeyValue = "c096090b482a281a51695afe";//
+        ConversionMoneda conversion = new ConversionMoneda();//Inicializo la clase conversion
         int estado = 1;
         //Inicio del scanner
         Scanner lectura = new Scanner(System.in);
 
-
         //Inicio del programa
 
         //Mensaje de bienvenida
+        System.out.println("************************************************************");
         System.out.println("Bienvenido al conversor de monedas");
         System.out.println("Por favor elija una opcion valida" + "\n");
 
@@ -38,21 +37,19 @@ public class Main {
                 //De otra forma accedo a la eleccion de moneda
                 double cantidadACambiar = menu.elegirMontoACambiar(lectura);
                 conversion.definirConversionyMonto(eleccionUsuario, cantidadACambiar);
-                //conversion.realizarConversion(apiKeyValue);
                 conversion.realizarConversion();
                 System.out.println(conversion);
+
+                //Le pregunto al usuario si desea continuar
                 estado=menu.continuarOCerrarPrograma(lectura);
-
-            }
-
-            //Le pregunto al usuario si desea continuar
-            if (estado == 2) {
-                break;
-            } else {
-                menu.mostrarOpciones();
+                if (estado == 2) {
+                    break;
+                }
+                System.out.println("************************************************************");
             }
         }
         System.out.println("Muchas gracias por usar nuestro servicio :) ");
+        System.out.println("************************************************************");
     }
 }
 
