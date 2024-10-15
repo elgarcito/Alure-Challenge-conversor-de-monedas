@@ -3,10 +3,10 @@
 ### ¡¡¡Hola!!!, Bienvenido a este repositorio
 
 Aquí encontrarás la respuesta al desafío planteado en la segunda parte del curso
-**Formaciones en programacion** de
+**Formaciones en programación** de
 [Oracle Next Education](https://www.oracle.com/ar/education/oracle-next-education/).
 
-### Acerca del desafio
+### Acerca del desafío
 El objetivo de este proyecto es poder aplicar cada uno de los módulos aprendidos
 en el curso en un proyecto complejo:
 
@@ -17,37 +17,98 @@ este desafío. El orden en que aparecerán a continuación fue en el cual se
 resolvió el problema (no el orden propio de la plataforma).
 Los pasos son los siguientes:
 
+## Paso 1 diseño de los modelos
+Se utilizaron los cursos:
+1. Java: creando tu primera aplicación
+2. Java: aplicando la Orientación a Objetos
 
-Aqui se aplicaron los conceptos de los cursos:
-1. ChatGPT: optimizando la calidad de los resultados
+Se crearon los objetos que representan nuestro modelo. 
+Estos son las clases Menú y ConversionMoneda.
+Se decidio tomar como objeto no a la moneda en sí, sino a la transacción
 
-Se utilizo la lectura de un [json](opciones.json) precargado con las posibles opciones de conversion.
-A partir de la funcion definirConversionyMonto utilizamos la opcion elegida del usuario
+
+## Paso 2 leyendo opciones de un archivo
+Se utilizaron los cursos:
+1. Java: creando tu primera aplicación
+2. Java: aplicando la Orientación a Objetos
+3. Java: trabajar con listas y colecciones de datos
+
+
+Se utilizo la lectura de un [json](opciones.json) precargado con las posibles opciones de conversión.
+A partir de la función definirConversionyMonto utilizamos la opción elegida del usuario.
+Este método se encuentra en la clase Menu.
 ```bash
- public void definirConversionyMonto(int eleccion, double cantidadACambiar) {
+ public void mostrarOpciones() {
         // Leer el archivo JSON
         FileReader reader = null;
-        setCantidadACambiar(cantidadACambiar);
         try {
             reader = new FileReader("opciones.json");
             JsonElement fileElement = JsonParser.parseReader(reader);
             JsonArray jsonArray = fileElement.getAsJsonArray();
 
             // Iterar a través del array
+            int opcion = 1;
             for (JsonElement element : jsonArray) {
                 JsonObject objeto = element.getAsJsonObject();
-                int opcion = objeto.get("Opcion").getAsInt();
-                if(opcion==eleccion){
-                    setNombreMonedaElegida(objeto.get("monedaElegida").getAsString());
-                    setNombreMonedaObjetivo(objeto.get("monedaDestino").getAsString());
-                }
+                String opciones = objeto.get("Opciones_de_conversion").getAsString();
+                System.out.println(" Opción: " + opcion + "-----> " + opciones);
+                opcion++;
             }
+            //System.out.println("**********************************************");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 ```
 
+## Paso 3
+Se utilizo el curso:
+Java: consumir API, escribir archivos y manejar errores
+
+Aquí se utilizó el siguiente codigo:
+
+```bash
+ public void realizarConversion(){
+
+        //Leo la API Key desde un archivo
+        BufferedReader br = null;
+        try {
+
+            br = new BufferedReader(new FileReader("apiKey.txt"));
+            String apiKeyValue = br.readLine();
+            br.close();
+
+            String finalUrl="https://v6.exchangerate-api.com/v6/"+apiKeyValue+"/pair/"+"/"+getNombreMonedaElegida()+"/"
+                    +getNombreMonedaObjetivo();
+
+            Gson gson = new GsonBuilder()
+                    .setPrettyPrinting()
+                    .create();
+
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(finalUrl))
+                    .build();
+
+            HttpResponse<String> response = null;
+            response = client
+                    .send(request, HttpResponse.BodyHandlers.ofString());
+
+            String json=response.body();
+            MonedaRecord monedaRecord=gson.fromJson(json, MonedaRecord.class);
+            setValorMonedaObjetivo(Double.valueOf(monedaRecord.conversion_rate()));
+            setMontoFinalMonedaObjetivo(getValorMonedaObjetivo()*getCantidadACambiar());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+```
+
+Para conectarse a una API mediante HTTP. Se guardo la API key en un archivo separado para
+mantener la seguridad
 
 ### Resumen final
 
@@ -60,15 +121,17 @@ Para copiar este repositorio en caso de necesitarlo:
   git clone this-repo-url
 ```
 
-Tal como se indica en el desafio el proyecto no se deployo.
+Tal como se indica en el desafío el proyecto no se deployo.
 
-Como conclusion y a titulo personal, el desafio presento una complejidad acorde a la dificultad de los cursos.
+Como conclusión y a titulo personal, el desafío presento una complejidad acorde a la dificultad de los cursos.
 Los contenidos de cada curso fueron aplicados directamente en el proyecto final, lo que indica una gran posibilidad
-de aplicacion de cada tema. Otro aspecto importante es que el resultado final tiene un acabado muy prolijo y armonioso
-lo que, luego de tantas horas invertidas en este proyecto, dejan al autor del mismo muy satisfecho.
+de aplicación de cada tema. 
+La conexión con una API es un abre un gran abanico de posibilidades por lo cual el autor se encuentra muy satisfecho
+con lo aprendido
 
 
 ### Author
 [@Edgar Aguirre](https://github.com/elgarcito)
 
 For educative purpose.
+
